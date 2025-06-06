@@ -26,3 +26,14 @@ No inputs are required.
 
 - When submitting the project for review, you need to include an xls file that can be read by your application.
 
+## Structure
+The program run by itself.<br>
+It first try to read from the AthleteSheet.xlsx file.<br>
+Then it extracts the header and their value to the designed class.<br>
+The database is deleted and recreated and refilled at every run.<br>
+The data is then taken from the database and exposed in a simple table to the user.<p>
+No inputs are necessary except to print the results and leave the program.
+
+## Resources
+- Excel Sample Data for Practice or Training Example: [Link](https://www.contextures.com/xlsampledata01.html)
+- EPPlus - Excel Sheet for .NET: [Link](https://www.epplussoftware.com/)

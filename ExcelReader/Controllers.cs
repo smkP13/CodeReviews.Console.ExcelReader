@@ -55,7 +55,6 @@ class ExcelController
         string? appFolderPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
         int pathLength = appFolderPath.Length - 16;
         string dbFolderPath = appFolderPath.Substring(0, pathLength);
-        //return $"{dbFolderPath}/OfficeSalesSampleData.xlsx";
         return $"{dbFolderPath}AthleteSheet.xlsx";
     }
 }

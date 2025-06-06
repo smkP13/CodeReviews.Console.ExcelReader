@@ -30,4 +30,4 @@ No inputs are needed, the app just asks to press enter before printing the resul
 
 ## Resources
 - Excel Sample Data for Practice or Training Example: [Link](https://www.contextures.com/xlsampledata01.html)
-- Excel Reader in C#: [Link](https://github.com/ZubePB/ExcelReader)
+- EPPlus - Excel Sheet for .NET: [Link](https://www.epplussoftware.com/)
