@@ -21,6 +21,6 @@ internal class Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public Dictionary<string, string>? keyValuePairs { get; set; } = [];
+        public Dictionary<string, string>? KeyValuePairs { get; set; } = [];
     }
 }

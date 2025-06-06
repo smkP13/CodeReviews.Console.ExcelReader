@@ -30,7 +30,7 @@ internal class Program
             table.AddColumn("Id");
             table.ShowRowSeparators();
             headers.ForEach(header => table.AddColumn(header.Text));
-            datas.ForEach(data => table.AddRow(data.keyValuePairs.Values.ToArray()));
+            datas.ForEach(data => table.AddRow(data.KeyValuePairs.Values.ToArray()));
             AnsiConsole.MarkupLine("Press any [yellow]Key[/] to print the data.");
             Console.ReadLine();
 

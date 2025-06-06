@@ -5,11 +5,11 @@ namespace DynamicExcelReader;
 
 class DynamicExcelController
 {
-    private static string _fileStr => GetFilePath();
+    private static string FileStr => GetFilePath();
     internal static List<Header>? GetHeaders()
     {
         ExcelPackage.License.SetNonCommercialPersonal("MySelf");
-        FileInfo file = new(_fileStr);
+        FileInfo file = new(FileStr);
         if (!file.Exists) file.Create();
         using (ExcelPackage package = new(file, ""))
         {
@@ -31,34 +31,32 @@ class DynamicExcelController
 
     internal static List<DynamicData>? GetData()
     {
-        using ExcelPackage package = new(new FileInfo(_fileStr), "");
+        using ExcelPackage package = new(new FileInfo(FileStr), "");
+        List<Header>? headers = GetHeaders();
+        ExcelWorksheet? sheet = package.Workbook.Worksheets.FirstOrDefault();
+        List<DynamicData> datas = [];
+        if (sheet != null && headers != null)
         {
-            List<Header>? headers = GetHeaders();
-            ExcelWorksheet? sheet = package.Workbook.Worksheets.FirstOrDefault();
-            List<DynamicData> datas = [];
-            if (sheet != null && headers != null)
+            foreach (ExcelRangeRow row in sheet.Rows)
             {
-                foreach (ExcelRangeRow row in sheet.Rows)
+                if (row.StartRow != 1)
                 {
-                    if (row.StartRow != 1)
+                    DynamicData data = new();
+                    data.Id = datas.Count() + 1;
+                    data.KeyValuePairs = [];
+                    data.KeyValuePairs.TryAdd("Id", data.Id.ToString());
+                    int index = 0;
+                    while (index < headers.Count())
                     {
-                        DynamicData data = new();
-                        data.Id = datas.Count() + 1;
-                        data.keyValuePairs = [];
-                        data.keyValuePairs.TryAdd("Id", data.Id.ToString());
-                        int index = 0;
-                        while (index < headers.Count())
-                        {
-                            data.keyValuePairs.TryAdd(headers[index].Text, row.Range.TakeSingleColumn(index).Text);
-                            index++;
-                        }
-                        datas.Add(data);
+                        data.KeyValuePairs.TryAdd(headers[index].Text, row.Range.TakeSingleColumn(index).Text);
+                        index++;
                     }
+                    datas.Add(data);
                 }
-                return datas;
             }
-            return null;
+            return datas;
         }
+        return null;
     }
 
     private static string GetFilePath()

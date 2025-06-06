@@ -18,7 +18,7 @@ class DynamicContext : DbContext
     {
         List<DynamicData>? data = DynamicExcelController.GetData();
         modelBuilder.Entity<DynamicData>().HasKey(x => new { x.Id });
-        modelBuilder.Entity<DynamicData>().Property(x => x.keyValuePairs)
+        modelBuilder.Entity<DynamicData>().Property(x => x.KeyValuePairs)
         .HasConversion(
             x => JsonConvert.SerializeObject(x),
             x => JsonConvert.DeserializeObject<Dictionary<string, string>>(x));

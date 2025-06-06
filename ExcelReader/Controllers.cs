@@ -5,11 +5,11 @@ namespace ExcelReader;
 
 class ExcelController
 {
-    private static string _fileStr => GetFilePath();
+    private static string FileStr => GetFilePath();
     internal static List<Header> GetHeaders()
     {
         ExcelPackage.License.SetNonCommercialPersonal("MySelf");
-        FileInfo file = new(_fileStr);
+        FileInfo file = new(FileStr);
         if (!file.Exists) file.Create();
         using (ExcelPackage package = new(file, ""))
         {
@@ -27,7 +27,7 @@ class ExcelController
 
     internal static List<Athlete> GetAllAthletes()
     {
-        using (ExcelPackage athletePackage = new(new FileInfo(_fileStr), ""))
+        using (ExcelPackage athletePackage = new(new FileInfo(FileStr), ""))
         {
             ExcelWorksheet athleteSheet = athletePackage.Workbook.Worksheets.FirstOrDefault();
             List<Athlete> athleteList = new();
